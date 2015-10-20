@@ -1,0 +1,161 @@
+					/**** HEADERS ****/
+
+
+
+					/* DISPLAY MODES */
+proc drawCPK();	//Cambia automáticamente entre Ball & Stick y CPK
+proc drawBallAndStick(string $mode);	//Modes: { atom, hetatm }. DEFAULT: hetatm
+proc drawStick(float $rad);
+proc drawWire();
+proc drawCarcass();
+proc drawChainTrace(string $modeAminoacids, string $modeDNA);	
+proc drawHelixes(string $mode);	
+proc drawSheets(string $mode);
+proc drawSlabs(string $mode, int $connectTwoStrands);
+proc drawScene();	
+
+
+
+
+					/* LAYERS */
+proc keepHelixes(int $onoff);		// -> show helixes
+proc keepSheets(int $onoff);		// -> show sheets
+proc keepChainTraces(int $onoff); 	// -> show chain traces
+
+proc selectChain(string $letter);
+proc showChain(string $letter, int $onOff);	
+proc showAllChains(int $onOff);
+proc showConects(string $letter, int $onOff);
+proc selectChain(string $letter);
+
+proc showMolecule(int $onOff);
+proc showWaters(int $onOff);
+proc showBonds(int $onOff);
+proc showAllAtoms(int $onOff);
+proc showAtoms(int $onOff);
+proc showHetatms(int $onOff);
+proc showCarcass(int $yn);
+proc showHelixes(int $onOff);
+proc showHelix(int $h, int $onOff);
+proc showSheets(int $onOff);
+proc showSheet(int $s, int $onOff);
+proc showSlabs(int $onOff);
+proc showChainTrace(int $yn);
+proc showFullBackbone();
+proc showMinimalBackbone();
+
+proc string[] selectCurrentHelixes()
+proc string[] selectCurrentSheets()
+proc string[] selectCurrentChainTrace(string $type); //TYPE: dna, amino
+
+
+
+
+
+					/* COLORING */
+proc assignShader(string $shaderName, float $color[], string $objectName);
+proc assignExistingShader(string $shaderName, string $objectName);
+proc drawCPKMonochrome(float $color[]);
+proc drawCPKChain();
+proc drawCPKResidue();
+proc assignColorToHelixByType(int $helixType, string $helixName);
+proc assignColorToHelixByNumber(int $number, string $helixName);
+proc assignColorToStrandByNumber(int $s, int $sheet, string $strandName);
+proc assignColorToHelixByChain(string $chain, string $helixName);
+//proc assignRainbowToCPK();	//QUITAR
+proc changeMaterial(string $shaderName, string $replaceType);
+proc changeAllMaterials(string $replaceType);
+
+
+
+
+					/* CAMERAS */
+proc setCameras();
+proc activateCamera(string $cameraName);	
+proc string[] createCamera();
+proc restoreCurrentCameraPosition();
+proc increaseAnimationSpeed();
+proc decreaseAnimationSpeed();
+proc playRotation();
+proc stopRotation();
+
+
+
+
+					/* LIGHTS */
+proc setLights();
+proc changeLightsIntensity(string $light, float $value);
+proc moveLights(int $n);
+proc restoreLights();
+proc deactivateShadows(int $yn);
+
+
+
+
+					/* RENDERING */
+proc render(string $style); //STYLE: {realistic, cartoon, vector, caustics}
+proc renderConfig(string $renderer);
+proc renderVector(string $camera, string $fillStyle, string $edgeStyle);
+
+
+
+
+					/* PROPERTIES */
+proc readPDB();
+proc printInformation();
+proc float[] getCPKProperties(string $element);
+proc float[] getCPKChainProperties(string $chain);
+proc float[] getCPKResidueProperties(string $residue);
+proc string[] getElementsNiceNames(string $shortNames[]);
+proc string[] getResiduesNiceNames(string $shortNames[]);
+						
+
+
+
+					/* DRAWING OF PRIMITIVES  */
+proc drawAtoms(string $mode);	// Mode: "regular", "carcass"
+proc setPosition(string $objectName, vector $position);
+proc setPositionStrand(string $objectName, vector $position);
+proc extrudeCylinder(string $curve, string $polygon, string $mode);	// Mode: dna
+proc extrudeRibbon(string $curve, string $polygon, int $subdivisions);
+proc extrudeStrand(string $curve, string $polygon, int $twist);
+proc drawSphereFromId(int $a, float $radius);	
+proc drawCylinder(vector $coordA, vector $coordB, string $element, int $nA, int $nB, string $mode);
+proc drawBond(int $nA, int $nB);	
+proc drawCurve(int $curvePoints[], string $mode, int $number);
+proc drawConnectedBases(int $nA, int $nB);	//sólo se usa en drawSlabs
+proc changeBasesWidth(float $rad);
+proc drawCube();
+proc rescaleAtoms(string $group[], string $mode); // Modes: cpk, ballandstick, stick, wire
+
+
+
+
+					/* INTERFACE */
+proc setInterface();
+proc interfacePart2();
+proc drawLightswindow();
+proc drawRenderingWindow();
+proc drawCamerasWindow();
+proc drawDisplayWindow();
+proc drawStructureWindow();
+global proc float getFloatFromSlider(string $floatSlider){
+global proc int getIntFromSlider(string $intSlider){
+global proc float[] getColorFromSlider(string $colorSlider){
+
+
+
+
+					/* OTHER METHODS */
+proc fopenFile (string $fN, string $type);
+proc string[] stringToCharArray(string $string);
+proc int isPositionEmpty(string $strArray[], int $p);
+proc string strGet(string $myString, int $pos);
+proc float join(float $integer, float $decimal);
+
+
+
+
+					/* MATH */
+proc vector calculateMidPoint(vector $coordA, vector $coordB);
+proc calculateSceneMidPoint();
